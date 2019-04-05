@@ -1,23 +1,64 @@
-<!DOCTYPE html>
+<!--<!DOCTYPE html>
 <html>
 <head>
   <title> Main </title>
   <link rel="stylesheet" href="/css/ciphers.css" />
-</head>
+</head> -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel ="stylesheet" href ="/css/ciphers.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Allerta+Stencil">
+    <title> Crypto for fun </title>
+  </head>
+
+    <header>
+      <h1>Crypto for fun</h1>
+      <h4>Classical Cipher Encoders</h4>
+    </header><br>
+
 <body>
-      <!--Register/Login messages
-  {{#if success_msg}}
-    <div class="alert-success">{{{success_msg}}}</div>
-  {{/if}}
 
-  {{#if error_msg}}
-    <div class="alert">{{error_msg}}</div>
+<div class="navbar">
+  <a href="/">Home</a>
+  <div class="dropdown">
+    <button class="dropbutton">Ciphers</button>
+    <div class="dropdown-content">
+      <a href="/caesar">Caesar Cipher</a>
+      <a href="/rot13">ROT13</a>
+      <a href="/substitution">Substitution Cipher</a>
+      <a href="/bacon">Baconian Cipher</a>
+    </div>
+  </div>
+  <a href="/about">About us</a>
+  {{#if user}}
+  <a href="/">Dashboard</a>
+  <a href="/users/logout">Logout</a>
+  {{else}}
+  <a href="/users/login">Login</a>
+  <a href="/users/register">Register</a>
   {{/if}}
+</div>
 
-  {{#if error}}
-    <div class="alert">{{error}}</div>
-  {{/if}}
--->
+<!--Alert messages -->
+{{#if success_msg}}
+  <div class="alert-success">{{success_msg}}</div>
+{{/if}}
+
+{{#if error_msg}}
+  <div class="alert">{{error_msg}}</div>
+{{/if}}
+
+{{#if error}}
+  <div class="alert">{{error}}</div>
+{{/if}}
+
+
   {{{body}}}
-</body>
-</html>
+
+  <footer>
+    <p>set08101 - Web Technologies<br>
+    February 2019</p>
+  </footer>
+
+</htmL>

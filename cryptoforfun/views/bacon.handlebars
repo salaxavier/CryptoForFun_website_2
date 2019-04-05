@@ -1,0 +1,31 @@
+
+    <div class="cos">
+    <h1 id="ciphers_font">Baconian Cipher</h1>
+    <div class="about">
+      <p id="pic"><img src="images/bacon.jpg" width="375" height="auto"></p>
+      <div id="about_cipher">
+        <p>The Baconian cipher is a method of steganography (a method of hiding a secret message as opposed to just a cipher)
+        devised by Francis Bacon in 1605. A message is concealed in the presentation of text, rather than its content.</p>
+        <p>To encode a message, each letter of the plaintext is replaced by a group of five of the letters 'A' or 'B'.
+        This replacement is a binary encoding and is done according to the alphabet of the Baconian cipher (from the Latin Alphabet).  </p>
+        </div>
+    </div>
+    <p id="source">
+      Source: <a href="https://en.wikipedia.org/wiki/Bacon%27s_cipher"> Wikipedia</a><br><br>
+    </p>
+    <br><br><br>
+
+    <div class="container">
+
+        <label>Your message</label><br>
+        <textarea id="message" placeholder="Type something..."></textarea><br>
+        <input type="button" value="Encode" onclick ="encode()">
+        <input type="button" value="Decode" onclick ="decode()"><br><br><br>
+
+        <label id="output_name">Encoded or decoded message</label><br>
+        <textarea id="output" readonly></textarea>
+
+    </div>
+  </div>
+    <script type ="text/javascript" src ="scripts/bacon.js"></script>
+  </body><br><br>
