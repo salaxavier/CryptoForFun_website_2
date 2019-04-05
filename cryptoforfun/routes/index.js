@@ -4,8 +4,13 @@ var router = express.Router();
 //router.use(express.static('public'));
 
 /* GET home page. */
-router.get('/', ensureAuthenticated, function(req, res) {
+router.get('/', function(req, res) {
   res.render('index');
+  //res.sendfile('index.html');
+});
+
+router.get('/dashboard', ensureAuthenticated, function(req, res) {
+  res.render('dashboard');
   //res.sendfile('index.html');
 });
 
