@@ -1,0 +1,20 @@
+
+    <div class="container">
+      <form method="post" action="/dashboard/bacon" id="bacon">
+        <input type="hidden" name="cipher" value="bacon">
+        <input type="hidden" name="param" value="">
+        <label>To:</label><br>
+        <input id="to_user" class="form-control" placeholder="Username" name="to_user"></input><br><br>
+        <label>Your message</label><br>
+        <textarea id="message" placeholder="Type something..."></textarea><br>
+        <input type="button" value="Encode" onclick ="encode()">
+        <input type="button" value="Decode" onclick ="decode()"><br><br><br>
+
+        <label id="output_name">Encoded message</label><br>
+        <textarea id="output" readonly class="form-control" name="message_ciphered" form="bacon"></textarea><br>
+        <input type="submit" value="Send"><br><br>
+      </form>
+    </div>
+
+    <script type ="text/javascript" src ="../../scripts/bacon.js"></script>
+  </body><br><br>

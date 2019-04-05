@@ -4,24 +4,23 @@
     <div class="cos">
     <h1 id="ciphers_font">Dashboard </h1>
     <div class="about">
-      <p id="pic"><img src="images/rot13.png" width="330" height="auto"></p>
+      <p id="pic"><img src="images/messages.png" width="300" height="auto"></p>
       <div id="about_cipher">
+
         <p>Send encrypted messages to other users!</p>
+        <p>Choose the encryption method from the available choices below:</p>
         </div>
+        <br><br>
     </div>
-    
-    <br><br><br>
 
     <div class="container">
 
-        <label>Your message</label><br>
-        <textarea id="message" placeholder="Type something..."></textarea><br>
-        <input type="button" value="Encode/Decode" onclick ="encode()"><br><br><br>
-
-        <label>Encoded or decoded message</label><br>
-        <textarea id="output" readonly></textarea>
+        <input type="button" value="Caesar" onclick="location.href = '/dashboard/caesar';">
+        <input type="button" value="ROT13" onclick="location.href = '/dashboard/rot13';">
+        <input type="button" value="Substitution" onclick="location.href = '/dashboard/substitution';">
+        <input type="button" value="Baconian" onclick="location.href = '/dashboard/bacon';">
 
     </div>
-  </div>
+
     <script type ="text/javascript" src ="scripts/rot13.js"></script>
-  </body><br><br>
+  </body><br><br><br><br><br>

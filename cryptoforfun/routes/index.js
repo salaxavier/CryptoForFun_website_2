@@ -11,41 +11,51 @@ router.get('/', function(req, res) {
 
 router.get('/dashboard', ensureAuthenticated, function(req, res) {
   res.render('dashboard');
-  //res.sendfile('index.html');
 });
 
 function ensureAuthenticated(req, res, next){
   if(req.isAuthenticated()){
     return next();
   } else {
-    //req.flash('error_msg', 'You must log in.');
+    req.flash('error_msg', 'You must log in.');
     res.redirect('/users/login');
   }
 }
 
 router.get('/about', function(req, res) {
   res.render('about');
-  //res.sendfile('index.html');
 });
 
 router.get('/bacon', function(req, res) {
   res.render('bacon');
-  //res.sendfile('index.html');
 });
 
 router.get('/caesar', function(req, res) {
   res.render('caesar');
-  //res.sendfile('index.html');
 });
 
 router.get('/rot13', function(req, res) {
   res.render('rot13');
-  //res.sendfile('index.html');
 });
 
 router.get('/substitution', function(req, res) {
   res.render('substitution');
-  //res.sendfile('index.html');
+});
+
+router.get('/dashboard/caesar', function(req, res) {
+  res.render('dashboard/caesar', {layout: 'dashb_layout.handlebars'});
+});
+
+router.get('/dashboard/bacon', function(req, res) {
+  res.render('dashboard/bacon', {layout: 'dashb_layout.handlebars'});
+});
+
+router.get('/dashboard/rot13', function(req, res) {
+  res.render('dashboard/rot13', {layout: 'dashb_layout.handlebars'});
+});
+
+router.get('/dashboard/substitution', function(req, res) {
+  res.render('dashboard/substitution', {layout: 'dashb_layout.handlebars'});
 });
 
 module.exports = router;
