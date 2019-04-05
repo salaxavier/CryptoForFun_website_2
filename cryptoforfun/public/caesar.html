@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel ="stylesheet" type ="text/css" href ="css/ciphers.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Allerta+Stencil">
+    <title> Caesar Cipher </title>
+  </head>
+
+  <header>
+    <h1>Crypto for fun</h1>
+    <h4>Classical Cipher Encoders</h4>
+  </header><br>
+
+  <body>
+
+    <div class="navbar">
+      <a href="index.html">Home</a>
+      <div class="dropdown">
+        <button class="dropbutton">Ciphers</button>
+        <div class="dropdown-content">
+          <a href="#">Caesar Cipher</a>
+          <a href="rot13.html">ROT13</a>
+          <a href="substitution.html">Substitution Cipher</a>
+          <a href="bacon.html">Baconian Cipher</a>
+        </div>
+      </div>
+      <a href="about.html">About us</a>
+    </div><br><br>
+
+    <div class="cos">
+    <h1 id="ciphers_font">Caesar Cipher </h1>
+    <div class="about">
+      <p id="pic"><img src="images/caesar_decoder.png"></p>
+      <div id="about_cipher">
+        <p>In cryptography, a Caesar cipher is one of the simplest and most widely known encryption techniques.
+      It is a type of substitution cipher in which each letter in the plaintext is replaced by a letter some fixed number of positions down the alphabet.
+      The method is named after Julius Caesar, who used it in his private correspondence. </p>
+      </div>
+    </div>
+    <p id="source">
+      Source: <a href="https://en.wikipedia.org/wiki/Caesar_cipher"> Wikipedia</a><br><br>
+    </p>
+    <br><br>
+
+    <div class="container">
+
+        <label>Your message</label><br>
+        <textarea id="message" placeholder="Type something..."></textarea><br>
+
+        <label>Shift</label>
+        <select id="shift">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+          <option value="9">9</option>
+          <option value="10">10</option>
+          <option value="11">11</option>
+          <option value="12">12</option>
+          <option value="13">13</option>
+          <option value="14">14</option>
+          <option value="15">15</option>
+          <option value="16">16</option>
+          <option value="17">17</option>
+          <option value="18">18</option>
+          <option value="19">19</option>
+          <option value="20">20</option>
+          <option value="21">21</option>
+          <option value="22">22</option>
+          <option value="23">23</option>
+          <option value="24">24</option>
+          <option value="25">25</option>
+
+        </select><br><br>
+
+        <input type="button" value="Encode" onclick ="encode()"> <input type="button" value="Decode" onclick ="decode()"><br><br><br>
+
+        <label id="output_name">Encoded or decoded message</label><br>
+        <textarea id="output" readonly></textarea>
+
+    </div>
+
+
+    <script type ="text/javascript" src ="scripts/caesar.js"></script>
+  </div>
+  </body><br><br>
+
+  <footer>
+    <p>set08101 - Web Technologies<br>
+    February 2019</p>
+  </footer>
+
+</htmL>

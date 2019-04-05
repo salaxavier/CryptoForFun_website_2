@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel ="stylesheet" type ="text/css" href ="css/ciphers.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Allerta+Stencil">
+    <title>Baconian Cipher</title>
+  </head>
+
+  <header>
+    <h1>Crypto for fun</h1>
+    <h4>Classical Cipher Encoders</h4>
+  </header><br>
+
+  <body>
+
+    <div class="navbar">
+      <a href="index.html">Home</a>
+      <div class="dropdown">
+        <button class="dropbutton">Ciphers</button>
+        <div class="dropdown-content">
+          <a href="caesar.html">Caesar Cipher</a>
+          <a href="rot13.html">ROT13</a>
+          <a href="substitution.html">Substitution Cipher</a>
+          <a href="#">Baconian Cipher</a>
+        </div>
+      </div>
+      <a href="about.html">About us</a>
+    </div><br><br>
+
+    <div class="cos">
+    <h1 id="ciphers_font">Baconian Cipher</h1>
+    <div class="about">
+      <p id="pic"><img src="images/bacon.jpg" width="375" height="auto"></p>
+      <div id="about_cipher">
+        <p>The Baconian cipher is a method of steganography (a method of hiding a secret message as opposed to just a cipher)
+        devised by Francis Bacon in 1605. A message is concealed in the presentation of text, rather than its content.</p>
+        <p>To encode a message, each letter of the plaintext is replaced by a group of five of the letters 'A' or 'B'.
+        This replacement is a binary encoding and is done according to the alphabet of the Baconian cipher (from the Latin Alphabet).  </p>
+        </div>
+    </div>
+    <p id="source">
+      Source: <a href="https://en.wikipedia.org/wiki/Bacon%27s_cipher"> Wikipedia</a><br><br>
+    </p>
+    <br><br><br>
+
+    <div class="container">
+
+        <label>Your message</label><br>
+        <textarea id="message" placeholder="Type something..."></textarea><br>
+        <input type="button" value="Encode" onclick ="encode()">
+        <input type="button" value="Decode" onclick ="decode()"><br><br><br>
+
+        <label id="output_name">Encoded or decoded message</label><br>
+        <textarea id="output" readonly></textarea>
+
+    </div>
+  </div>
+    <script type ="text/javascript" src ="scripts/bacon.js"></script>
+  </body><br><br>
+
+  <footer>
+    <p>set08101 - Web Technologies<br>
+    February 2019</p>
+  </footer>
+
+</htmL>

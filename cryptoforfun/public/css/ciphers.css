@@ -1,0 +1,181 @@
+
+header {
+  font-size: large;
+  text-align: center;
+  padding: 0.3em 0;
+  background-color: #4a4a4a;
+  color: #f9f9f9;
+  font-family: "Times New Roman", Times, serif;
+}
+
+.navbar {        /* Navbar container */
+  overflow: hidden;
+  background-color: #4a4a4a;
+  font-family: Arial;
+}
+
+.navbar a {    /* Links inside the navbar */
+  float: left;
+  font-size: 16px;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.dropdown {     /* The dropdown container */
+  float: left;
+  overflow: hidden;
+}
+
+.dropdown .dropbutton {   /* Dropdown button */
+  font-size: 16px;
+  border: none;
+  outline: none;
+  color: white;
+  padding: 14px 16px;
+  background-color: inherit;
+  font-family: inherit;
+  margin: 0;
+}
+
+.navbar a:hover, .dropdown:hover .dropbutton {   /* Background colour to navbar links on hover */
+  background-color: #626C66;
+}
+
+.dropdown-content {   /* Dropdown content (hidden by default) */
+  display: none;
+  position: absolute;
+  background-color: #918B76;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {   /* Links inside the dropdown */
+  float: none;
+  color: white;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.dropdown-content a:hover {   /* Background colour to dropdown links on hover */
+  background-color: #626C66;
+}
+
+.dropdown:hover .dropdown-content {   /* Show the dropdown menu on hover */
+  display: block;
+}
+
+
+body {
+  background-color:#FCF8F4;
+/*  margin-left: 5em;
+  margin-right: 2.5em; */
+  font-size: 110%;
+  text-align: justify;
+  font-family: Helvetica, sans-serif;
+}
+
+.cos {
+    margin-left: 5em;
+    margin-right: 2.5em;
+}
+
+#cover {
+  text-align: center;
+}
+
+.intro {
+  max-width: 65%;
+  text-align: justify;
+  margin-left: 5em;
+  margin-right: 5em;
+}
+
+#ciphers_font {
+  font-family: "Allerta Stencil", Helvetica, sans-serif;
+  text-shadow: 1px 1px 0 black;
+  background-color: #8DAB7F;
+  color: white;
+  border-radius: 7px;
+  display: inline-block;
+  padding: 5px;
+}
+
+#about_cipher {
+  max-width: 65%;
+}
+
+#pic {
+  float: right;
+  margin-right: 1em;
+  margin-left: 2.5em;
+  background-attachment: fixed;
+}
+
+#source {
+  font-size: 75%;
+  border-bottom-style: ridge;
+  max-width: 65%;
+}
+
+#bold {
+  font-weight: bold;
+}
+
+
+.container {
+  border-radius: 5px;
+  background-color: #f2f2c4;
+  padding: 20px;
+  font-family: Arial, Helvetica, sans-serif;
+  box-sizing: border-box;
+  margin-right: 25em;
+}
+
+textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  resize: vertical;
+}
+
+input[type=button] {
+  background-color: #ACA885;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=button]:hover {
+  background-color: #918B76;
+}
+
+#about_us {
+  text-decoration: underline;
+}
+
+.alert {
+  color: red;
+}
+
+.alert-success {
+  color: green;
+}
+
+footer {
+  font-size: small;
+  text-align: center;
+  padding: 0.3em 0;
+  background-color: #4a4a4a;
+  color: #f9f9f9;
+}

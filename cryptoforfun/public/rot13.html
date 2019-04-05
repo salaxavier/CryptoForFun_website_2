@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel ="stylesheet" type ="text/css" href ="css/ciphers.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Allerta+Stencil">
+    <title> ROT13 Cipher </title>
+  </head>
+
+  <header>
+    <h1>Crypto for fun</h1>
+    <h4>Classical Cipher Encoders</h4>
+  </header><br>
+
+  <body>
+
+    <div class="navbar">
+      <a href="index.html">Home</a>
+      <div class="dropdown">
+        <button class="dropbutton">Ciphers</button>
+        <div class="dropdown-content">
+          <a href="caesar.html">Caesar Cipher</a>
+          <a href="#">ROT13</a>
+          <a href="substitution.html">Substitution Cipher</a>
+          <a href="bacon.html">Baconian Cipher</a>
+        </div>
+      </div>
+      <a href="about.html">About us</a>
+    </div><br><br>
+
+    <div class="cos">
+    <h1 id="ciphers_font">ROT13 </h1>
+    <div class="about">
+      <p id="pic"><img src="images/rot13.png" width="330" height="auto"></p>
+      <div id="about_cipher">
+        <p>ROT13 ("rotate by 13 places") is a simple letter substitution cipher that replaces
+        a letter with the 13th letter after it, in the alphabet. ROT13 is a special case of the <a href="caesar.html">Caesar Cipher</a>
+        which was developed in ancient Rome.</p>
+        <p>Because there are 26 letters (2×13) in the basic Latin alphabet, ROT13 is its own inverse; that is, to undo ROT13,
+        the same algorithm is applied, so the same action can be used for encoding and decoding.  </p>
+        </div>
+    </div>
+    <p id="source">
+      Source: <a href="https://en.wikipedia.org/wiki/ROT13"> Wikipedia</a><br><br>
+    </p>
+    <br><br><br>
+
+    <div class="container">
+
+        <label>Your message</label><br>
+        <textarea id="message" placeholder="Type something..."></textarea><br>
+        <input type="button" value="Encode/Decode" onclick ="encode()"><br><br><br>
+
+        <label>Encoded or decoded message</label><br>
+        <textarea id="output" readonly></textarea>
+
+    </div>
+  </div>
+    <script type ="text/javascript" src ="scripts/rot13.js"></script>
+  </body><br><br>
+
+  <footer>
+    <p>set08101 - Web Technologies<br>
+    February 2019</p>
+  </footer>
+
+</htmL>

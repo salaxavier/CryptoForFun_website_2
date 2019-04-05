@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel ="stylesheet" type ="text/css" href ="css/ciphers.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Allerta+Stencil">
+    <title> Substitution Cipher </title>
+  </head>
+
+  <header>
+    <h1>Crypto for fun</h1>
+    <h4>Classical Cipher Encoders</h4>
+  </header><br>
+
+  <body>
+
+    <div class="navbar">
+      <a href="index.html">Home</a>
+      <div class="dropdown">
+        <button class="dropbutton">Ciphers</button>
+        <div class="dropdown-content">
+          <a href="caesar.html">Caesar Cipher</a>
+          <a href="rot13.html">ROT13</a>
+          <a href="#">Substitution Cipher</a>
+          <a href="bacon.html">Baconian Cipher</a>
+        </div>
+      </div>
+      <a href="about.html">About us</a>
+    </div><br><br>
+
+    <div class="cos">
+    <h1 id="ciphers_font">Substitution Cipher </h1>
+    <div class="about">
+      <p id="pic"><img src="images/keyword.png" width="375" height="auto"></p>
+      <div id="about_cipher">
+        <p>Substitution of single letters separately (simple substitution) can be demonstrated by writing out the alphabet
+        in some order to represent the substitution. This is termed a substitution alphabet.
+        The cipher alphabet may be shifted or reversed or scrambled in a more complex fashion, in which case it is called a mixed alphabet or
+         deranged alphabet. </p>
+         <p>Traditionally, mixed alphabets may be created by first writing out a <span id="bold">keyword</span>, removing repeated letters in it,
+         then writing all the remaining letters in the alphabet in the usual order. </p>
+         </div>
+    </div>
+    <p id="source">
+      Source: <a href="https://en.wikipedia.org/wiki/Substitution_cipher#Simple_substitution"> Wikipedia</a><br><br>
+    </p>
+    <br><br>
+
+    <div class="container">
+
+        <label>Your message</label><br>
+        <textarea id="message" placeholder="Type something..."></textarea><br>
+
+        <label>Keyword</label>
+        <input id="key"></input><br><br>
+
+        <input type="button" value="Encode" onclick ="encode()"> <input type="button" value="Decode" onclick ="decode()"><br><br><br>
+
+        <label id="output_name">Encoded or decoded message</label><br>
+        <textarea id="output" readonly></textarea>
+
+    </div>
+
+
+    <script type ="text/javascript" src ="scripts/keyword.js"></script>
+  </body><br><br>
+  </div>
+  <footer>
+    <p>set08101 - Web Technologies<br>
+    February 2019</p>
+  </footer>
+
+</htmL>
