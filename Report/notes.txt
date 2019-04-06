@@ -15,6 +15,9 @@ JavaScript logic inside the templates. This helps to keep templates lean and rel
 (no business logic). It requires full HTML code.
 Aims: templates for the html pages, Alert messages, more confortable than Pug as it requires html language
 
+- Passport
+- Flash: to display error messages
+
 
 
 routers
@@ -34,3 +37,5 @@ Collection: users
 #db.users.find().pretty()
 
 (messages>post)
+
+Models: represent the DB collections

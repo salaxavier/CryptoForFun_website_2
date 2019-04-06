@@ -1,23 +1,32 @@
 var mongoose = require('mongoose');
-//var bcrypt = require('bcryptjs');
+var Schema = mongoose.Schema;
 
-//User Schema
-var MsgSchema = mongoose.Schema({
+//Messages Schema
+var MsgSchema = new Schema({
   cipher: {
-    type: String
+    type: String,
+    required: true
   },
   param: {
-    type: String
+    type: String,
+    required: false
   },
   to_user: {
-    type: String
+    type: String,
+    required: true
   },
   message_ciphered: {
-    type: String
+    type: String,
+    required: true
   }
 });
 
-//variable accessible outside of the file
+//variable for messages model (DB collection)
+var Msg = mongoose.model('messages', MsgSchema);
+//Export module (Provide access to other files)
+module.exports = Msg;
+
+/*
 var Msg = module.exports = mongoose.model('Msg', MsgSchema);
 
 module.exports.createUser = function(newUser, callback){  //Hash with salt
@@ -44,3 +53,4 @@ module.exports.comparePassword = function(candidatePassword, hash, callback){
     callback(null, isMatch);
   });
 }
+*/

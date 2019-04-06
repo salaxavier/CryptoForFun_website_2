@@ -11,7 +11,9 @@ var LocalStrategy = require('passport-local').Strategy;
 //var LocalStrategy = require('Strategy');
 var mongo = require('mongodb');
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/login');
+mongoose.connect('mongodb://localhost/cryptoforfun');
+//Override mongoose.promise because it's depricated
+mongoose.Promise = global.Promise;
 var db = mongoose.connection;﻿
 
 
@@ -70,6 +72,7 @@ app.use(expressValidator({
     };
   }
 }));
+
 
 //Connect Flash
 app.use(flash());

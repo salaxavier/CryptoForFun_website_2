@@ -6,15 +6,9 @@ var bodyParser = require('body-parser');
 var mongodb = require('mongodb');
 var dbConn = mongodb.MongoClient.connect('mongodb://localhost/messages')
 
+var Msg = require('../models/messages');
 
-var Msg = require('../models/msg');
-var User = require('../models/user');
-
-//Send message ciphered with Caesar
-router.get('/ciphers/caesar', ensureAuthenticated, function(req, res) {
-  res.render('ciphers/caesar', {layout: 'dashb_layout.handlebars'});
-});
-
+//Validation function
 function ensureAuthenticated(req, res, next){
   if(req.isAuthenticated()){
     return next();
@@ -23,6 +17,12 @@ function ensureAuthenticated(req, res, next){
     res.redirect('/users/login');
   }
 }
+
+
+//GET ciphers routes
+router.get('/ciphers/caesar', ensureAuthenticated, function(req, res) {
+  res.render('ciphers/caesar', {layout: 'dashb_layout.handlebars'});
+});
 
 router.get('/ciphers/bacon', ensureAuthenticated, function(req, res) {
   res.render('ciphers/bacon', {layout: 'dashb_layout.handlebars'});
@@ -37,59 +37,124 @@ router.get('/ciphers/substitution', ensureAuthenticated, function(req, res) {
 });
 
 
+
+//POST ciphers routes
+
 router.post('/ciphers/caesar', function(req, res){
-  var cipher = req.body.cipher;
-  var param = req.body.param;
-  var to_user = req.body.to_user;
-  var message_ciphered = req.body.message_ciphered;
+  //Validation
+    req.checkBody('to_user', 'Recipient is required').notEmpty();
+    req.checkBody('message_ciphered', 'Message is required').notEmpty();
+    var errors = req.validationErrors();
 
-  console.log(cipher);
-  console.log(param);
-  console.log(to_user);
-  console.log(message_ciphered);
+    if(errors){   //Invalid data supplied
+      res.render('ciphers/caesar',{
+        layout: 'dashb_layout.handlebars',
+        errors:errors
+      });
+    } else{   //Create and save new object into the DB
+    Msg.create(req.body).then(function(messages){
+    });
+    req.flash('success_msg', 'Message successfully sent.');
+    res.redirect('/dashboard');
+    };
+  });
 
+
+
+router.post('/ciphers/rot13', function (req, res) {
+  //Validation
+    req.checkBody('to_user', 'Recipient is required').notEmpty();
+    req.checkBody('message_ciphered', 'Message is required').notEmpty();
+    var errors = req.validationErrors();
+
+    if(errors){   //Invalid data supplied
+      res.render('ciphers/rot13',{
+        layout: 'dashb_layout.handlebars',
+        errors:errors
+      });
+    } else{   //Create and save new object into the DB
+    Msg.create(req.body).then(function(messages){
+    });
+    req.flash('success_msg', 'Message successfully sent.');
+    res.redirect('/dashboard');
+    };
+  });
+
+
+
+router.post('/ciphers/bacon', function (req, res) {
 //Validation
   req.checkBody('to_user', 'Recipient is required').notEmpty();
   req.checkBody('message_ciphered', 'Message is required').notEmpty();
   var errors = req.validationErrors();
 
   if(errors){   //Invalid data supplied
-    //console.log('Invalid data');
-    res.render('ciphers/caesar',{ layout: 'dashb_layout.handlebars' },{
+    res.render('ciphers/bacon',{
+      layout: 'dashb_layout.handlebars',
       errors:errors
     });
-  } else{     //Submit form and create user
-    //console.log('Successfully submitted');
-    var newMsg = new Msg({
-      cipher: cipher,
-      param: param,
-      to_user: to_user,
-      message_ciphered: message_ciphered
-    });/*
-    Msg.createMsg(newMsg, function(err, user){
-      if(err) throw err;
-      console.log(user);
-    });*/
-    req.flash('success_msg', 'Message successfully sent.');
-
-    res.redirect('/dashboard');
-  }
-});
-
-//Read POST data
-router.post('/ciphers/rot13', function (req, res) {
-  dbConn.then(function(db) {
-    db.collection('feedbacks').insertOne(req.body);
+  } else{   //Create and save new object into the DB
+  Msg.create(req.body).then(function(messages){
   });
-  res.send('Data received:\n' + JSON.stringify(req.body));
+  req.flash('success_msg', 'Message successfully sent.');
+  res.redirect('/dashboard');
+  };
 });
 
-//Read POSTed data
-router.get('/inbox', function (req, res) {
-  dbConn.then(function(db) {
-    db.collection('feedbacks').find({}).toArray().then(function(feedbacks) {
-      res.status(200).json(feedbacks);
+
+
+router.post('/ciphers/substitution', function (req, res) {
+//Validation
+  req.checkBody('to_user', 'Recipient is required').notEmpty();
+  req.checkBody('message_ciphered', 'Message is required').notEmpty();
+  var errors = req.validationErrors();
+
+  if(errors){   //Invalid data supplied
+    res.render('ciphers/substitution',{
+      layout: 'dashb_layout.handlebars',
+      errors:errors
     });
+  } else{   //Create and save new object into the DB
+  Msg.create(req.body).then(function(messages){
+  });
+  req.flash('success_msg', 'Message successfully sent.');
+  res.redirect('/dashboard');
+  };
+});
+
+
+
+
+
+//Update user data
+router.put('/dashboard/:id', ensureAuthenticated, function (req, res) {
+  Msg.findByIdAndUpdate({_id: req.params.id}, req.body).then(function(messages){
+    req.flash('success_msg', 'Your data has been updated. Please, relogin.');
+    res.redirect('/login');
+  });
+});
+
+//Get messages from Inbox
+router.get('/inbox/:id', ensureAuthenticated, function (req, res) {
+  Msg.findOne({_id: req.params.id}).then(function(messages){
+    res.send(messages);
+    //res.flash('message_msg', messages);   //Would this work? (must define message_msg in layout)
+  });
+});
+
+//Get messages from Inbox (Retrieves all messages in DB)
+router.get('/inbox', ensureAuthenticated, function (req, res) {
+  Msg.find({}).then(function(messages){
+    res.send(messages);
+    //res.flash('message_msg', messages);   //Would this work? (must define message_msg in layout)
+  });
+});
+
+//Delete data from Inbox
+router.delete('/inbox/:id', ensureAuthenticated, function (req, res) {
+  Msg.findByIdAndRemove({_id: req.params.id}).then(function(messages){
+    req.flash('success_msg', 'Message deleted.');
+    res.redirect('/inbox');
   });
 });
 
