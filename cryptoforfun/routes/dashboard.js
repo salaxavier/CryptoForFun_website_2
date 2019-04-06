@@ -3,53 +3,50 @@ var router = express.Router();
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 
-var User = require('../models/user');
+var Msg = require('../models/msg');
 
 
-//Register
-router.get('/register', function(req, res) {
-  res.render('register');
-});
+//Send message ciphered with Caesar
 
-router.post('/register', function(req, res){
-  var name = req.body.name;
-  var email = req.body.email;
-  var username = req.body.username;
-  var password = req.body.password;
-  var password2 = req.body.password2;
-//  console.log(name);
+router.post('/dashboard/caesar', function(req, res){
+  var cipher = req.body.cipher;
+  var param = req.body.param;
+  var to_user = req.body.to_user;
+  var message_ciphered = req.body.message_ciphered;
+
+  console.log(cipher);
+  console.log(param);
+  console.log(to_user);
+  console.log(message_ciphered);
 //Validation
-  req.checkBody('name', 'Name is required').notEmpty();
-  req.checkBody('email', 'Email is required').notEmpty();
-  req.checkBody('email', 'Invalid email address').isEmail();
-  req.checkBody('username', 'Username is required').notEmpty();
-  req.checkBody('password', 'Password is required').notEmpty();
-  req.checkBody('password2', 'Passwords do not match').equals(req.body.password);
+  req.checkBody('to_user', 'Recipient is required').notEmpty();
+  req.checkBody('message_ciphered', 'Message is required').notEmpty();
   var errors = req.validationErrors();
 
   if(errors){   //Invalid data supplied
     //console.log('Invalid data');
-    res.render('register',{
+    res.render('/dashboard/caesar',{
       errors:errors
     });
   } else{     //Submit form and create user
     //console.log('Successfully submitted');
-    var newUser = new User({
-      name: name,
-      email: email,
-      username: username,
-      password: password
+    var newMsg = new Msg({
+      cipher: cipher,
+      param: param,
+      to_user: to_user,
+      message_ciphered: message_ciphered
     });
-    User.createUser(newUser, function(err, user){
+    User.createUser(newUser, function(err, user){     //Submit info NOT as a new user
       if(err) throw err;
       console.log(user);
     });
-    req.flash('success_msg', 'Register successful. You can now login.');
+    req.flash('success_msg', 'Message successfully sent.');
 
-    res.redirect('/users/login');
+    res.redirect('/dashboard');
   }
 });
 
+/*
 //Login
 router.get('/login', function(req, res) {
   res.render('login');
@@ -98,4 +95,5 @@ router.get('/logout', function(req, res){
   res.redirect('/users/login');
 });
 
+*/
 module.exports = router;
