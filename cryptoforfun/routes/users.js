@@ -97,5 +97,17 @@ router.get('/logout', function(req, res){
 
   res.redirect('/users/login');
 });
-
+/*
+router.get('/dashboard/caesar', ensureAuthenticated, function(req, res) {
+  res.render('dashboard/caesar', {layout: 'dashb_layout.handlebars'}, { username: req.User.username });
+});
+function ensureAuthenticated(req, res, next){
+  if(req.isAuthenticated()){
+    return next();
+  } else {
+    req.flash('error_msg', 'You must log in.');
+    res.redirect('/users/login');
+  }
+}
+*/
 module.exports = router;

@@ -14,8 +14,10 @@ var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/login');
 var db = mongoose.connection;﻿
 
+
 var routes = require('./routes/index');
 var users = require('./routes/users');
+var dashboard = require('./routes/dashboard');
 
 //Initialize the App
 var app = express();
@@ -29,7 +31,15 @@ app.set('view engine', 'handlebars');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-
+/*
+//Read POST data
+app.post('/post-feedback', function (req, res) {
+  db.then(function(database) {
+    database.collection('feedbacks').insertOne(req.body);
+  });
+  res.send('Data received:\n' + JSON.stringify(req.body));
+});
+*/
 // Set Static Folder
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -75,6 +85,7 @@ app.use(function (req, res, next) {
 
 app.use('/', routes);
 app.use('/users', users);
+app.use('/dashboard', dashboard);
 
 //Set Port
 app.set('port', (process.env.PORT || 5000));

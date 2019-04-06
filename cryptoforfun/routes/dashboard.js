@@ -2,13 +2,42 @@ var express = require('express');
 var router = express.Router();
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
+var bodyParser = require('body-parser');
+var mongodb = require('mongodb');
+var dbConn = mongodb.MongoClient.connect('mongodb://localhost/messages')
+
 
 var Msg = require('../models/msg');
-
+var User = require('../models/user');
 
 //Send message ciphered with Caesar
+router.get('/ciphers/caesar', ensureAuthenticated, function(req, res) {
+  res.render('ciphers/caesar', {layout: 'dashb_layout.handlebars'});
+});
 
-router.post('/dashboard/caesar', function(req, res){
+function ensureAuthenticated(req, res, next){
+  if(req.isAuthenticated()){
+    return next();
+  } else {
+    req.flash('error_msg', 'You must log in.');
+    res.redirect('/users/login');
+  }
+}
+
+router.get('/ciphers/bacon', ensureAuthenticated, function(req, res) {
+  res.render('ciphers/bacon', {layout: 'dashb_layout.handlebars'});
+});
+
+router.get('/ciphers/rot13', ensureAuthenticated, function(req, res) {
+  res.render('ciphers/rot13', {layout: 'dashb_layout.handlebars'});
+});
+
+router.get('/ciphers/substitution', ensureAuthenticated, function(req, res) {
+  res.render('ciphers/substitution', {layout: 'dashb_layout.handlebars'});
+});
+
+
+router.post('/ciphers/caesar', function(req, res){
   var cipher = req.body.cipher;
   var param = req.body.param;
   var to_user = req.body.to_user;
@@ -18,6 +47,7 @@ router.post('/dashboard/caesar', function(req, res){
   console.log(param);
   console.log(to_user);
   console.log(message_ciphered);
+
 //Validation
   req.checkBody('to_user', 'Recipient is required').notEmpty();
   req.checkBody('message_ciphered', 'Message is required').notEmpty();
@@ -25,7 +55,7 @@ router.post('/dashboard/caesar', function(req, res){
 
   if(errors){   //Invalid data supplied
     //console.log('Invalid data');
-    res.render('/dashboard/caesar',{
+    res.render('ciphers/caesar',{ layout: 'dashb_layout.handlebars' },{
       errors:errors
     });
   } else{     //Submit form and create user
@@ -35,65 +65,32 @@ router.post('/dashboard/caesar', function(req, res){
       param: param,
       to_user: to_user,
       message_ciphered: message_ciphered
-    });
-    User.createUser(newUser, function(err, user){     //Submit info NOT as a new user
+    });/*
+    Msg.createMsg(newMsg, function(err, user){
       if(err) throw err;
       console.log(user);
-    });
+    });*/
     req.flash('success_msg', 'Message successfully sent.');
 
     res.redirect('/dashboard');
   }
 });
 
-/*
-//Login
-router.get('/login', function(req, res) {
-  res.render('login');
-  //res.sendfile('login.html');
+//Read POST data
+router.post('/ciphers/rot13', function (req, res) {
+  dbConn.then(function(db) {
+    db.collection('feedbacks').insertOne(req.body);
+  });
+  res.send('Data received:\n' + JSON.stringify(req.body));
 });
 
-passport.use(new LocalStrategy(
-  function(username, password, done) {
-    User.getUserByUsername(username, function(err, user){
-      if(err) throw err;
-      if(!user){
-        return done(null, false, {message: 'Invalid Username or Password'});
-      }
-      User.comparePassword(password, user.password, function(err, isMatch){
-        if(err) throw err;
-        if(isMatch){
-          return done(null, user);
-        } else {
-          return done(null, false, {message: 'Invalid Username or Password'});
-        }
-      });
+//Read POSTed data
+router.get('/inbox', function (req, res) {
+  dbConn.then(function(db) {
+    db.collection('feedbacks').find({}).toArray().then(function(feedbacks) {
+      res.status(200).json(feedbacks);
     });
-  }));
-
-passport.serializeUser(function(user, done) {
-  done(null, user.id);
-});
-
-passport.deserializeUser(function(id, done) {
-  User.getUserById(id, function(err, user) {
-    done(err, user);
   });
 });
 
-router.post('/login',
-  passport.authenticate('local',{successRedirect:'/dashboard', failureRedirect:'/users/login', failureFlash: true}),
-  function(req, res) {
-    res.redirect('/dashboard');
-  });
-
-router.get('/logout', function(req, res){
-  req.logout();
-
-  req.flash('success_msg', 'You are logged out');
-
-  res.redirect('/users/login');
-});
-
-*/
 module.exports = router;

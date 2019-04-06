@@ -1,6 +1,7 @@
 <div class="container">
-  <form method="post" action="/dashboard/caesar" id="caesar">
+  <form method="post" action="/dashboard/ciphers/caesar" id="caesar">
     <input type="hidden" name="cipher" value="caesar">
+    <input type="hidden" name="from" value="{{username}}">
     <label>To:</label><br>
     <input id="to_user" class="form-control" placeholder="Username" name="to_user"></input><br><br>
 

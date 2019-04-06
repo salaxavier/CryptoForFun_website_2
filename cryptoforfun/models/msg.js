@@ -1,25 +1,24 @@
 var mongoose = require('mongoose');
-var bcrypt = require('bcryptjs');
+//var bcrypt = require('bcryptjs');
 
 //User Schema
-var UserSchema = mongoose.Schema({
-  username: {
-    type: String,
-    index:true
-  },
-  password: {
+var MsgSchema = mongoose.Schema({
+  cipher: {
     type: String
   },
-  email: {
+  param: {
     type: String
   },
-  name: {
+  to_user: {
+    type: String
+  },
+  message_ciphered: {
     type: String
   }
 });
 
 //variable accessible outside of the file
-var User = module.exports = mongoose.model('User', UserSchema);
+var Msg = module.exports = mongoose.model('Msg', MsgSchema);
 
 module.exports.createUser = function(newUser, callback){  //Hash with salt
   bcrypt.genSalt(10, function(err, salt) {

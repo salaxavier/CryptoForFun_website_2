@@ -58,6 +58,12 @@
   <div class="alert">{{error}}</div>
 {{/if}}
 
+{{#if errors}}
+      {{#each errors}}
+      <div class="alert">{{msg}}</div>
+      {{/each}}
+{{/if}}
+
 
   {{{body}}}
 
