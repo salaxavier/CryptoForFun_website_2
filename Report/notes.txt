@@ -8,7 +8,7 @@ incoming requests and outgoing responses. There will be one more thing, called R
 client (browser/mobile app) to go to which Controller once a specific url/path is requested.
 
 
-Libraries
+Libraries (s'han de referenciar a les referencies)
 
 - Handlebars: The Handlebars library is a template engine (view engine). Handlebars was made so that developers can’t write a lot of 
 JavaScript logic inside the templates. This helps to keep templates lean and related strictly to the representation of the data 

@@ -8,6 +8,8 @@ var dbConn = mongodb.MongoClient.connect('mongodb://localhost/messages')
 
 var Msg = require('../models/messages');
 
+
+
 //Validation function
 function ensureAuthenticated(req, res, next){
   if(req.isAuthenticated()){
@@ -21,19 +23,35 @@ function ensureAuthenticated(req, res, next){
 
 //GET ciphers routes
 router.get('/ciphers/caesar', ensureAuthenticated, function(req, res) {
-  res.render('ciphers/caesar', {layout: 'dashb_layout.handlebars'});
+  var curr_user = req.user.username;
+  res.render('ciphers/caesar', {
+    layout: 'dashb_layout.handlebars',
+    from_user: curr_user
+  });
 });
 
 router.get('/ciphers/bacon', ensureAuthenticated, function(req, res) {
-  res.render('ciphers/bacon', {layout: 'dashb_layout.handlebars'});
+  var curr_user = req.user.username;
+    res.render('ciphers/bacon',{
+      layout: 'dashb_layout.handlebars',
+      from_user: curr_user
+    });
 });
 
 router.get('/ciphers/rot13', ensureAuthenticated, function(req, res) {
-  res.render('ciphers/rot13', {layout: 'dashb_layout.handlebars'});
+  var curr_user = req.user.username;
+  res.render('ciphers/rot13', {
+    layout: 'dashb_layout.handlebars',
+    from_user: curr_user
+  });
 });
 
 router.get('/ciphers/substitution', ensureAuthenticated, function(req, res) {
-  res.render('ciphers/substitution', {layout: 'dashb_layout.handlebars'});
+  var curr_user = req.user.username;
+  res.render('ciphers/substitution', {
+    layout: 'dashb_layout.handlebars',
+    from_user: curr_user
+  });
 });
 
 router.get('/mailer', ensureAuthenticated, function(req, res) {
@@ -47,11 +65,13 @@ router.post('/ciphers/caesar', function(req, res){
     req.checkBody('to_user', 'Recipient is required').notEmpty();
     req.checkBody('message_ciphered', 'Message is required').notEmpty();
     var errors = req.validationErrors();
+    var curr_user = req.user.username;
 
     if(errors){   //Invalid data supplied
       res.render('ciphers/caesar',{
         layout: 'dashb_layout.handlebars',
-        errors:errors
+        errors:errors,
+        from_user: curr_user
       });
     } else{   //Create and save new object into the DB
     Msg.create(req.body).then(function(messages){
@@ -68,11 +88,13 @@ router.post('/ciphers/rot13', function (req, res) {
     req.checkBody('to_user', 'Recipient is required').notEmpty();
     req.checkBody('message_ciphered', 'Message is required').notEmpty();
     var errors = req.validationErrors();
+    var curr_user = req.user.username;
 
     if(errors){   //Invalid data supplied
       res.render('ciphers/rot13',{
         layout: 'dashb_layout.handlebars',
-        errors:errors
+        errors:errors,
+        from_user: curr_user
       });
     } else{   //Create and save new object into the DB
     Msg.create(req.body).then(function(messages){
@@ -89,11 +111,13 @@ router.post('/ciphers/bacon', function (req, res) {
   req.checkBody('to_user', 'Recipient is required').notEmpty();
   req.checkBody('message_ciphered', 'Message is required').notEmpty();
   var errors = req.validationErrors();
+  var curr_user = req.user.username;
 
   if(errors){   //Invalid data supplied
     res.render('ciphers/bacon',{
       layout: 'dashb_layout.handlebars',
-      errors:errors
+      errors:errors,
+      from_user: curr_user
     });
   } else{   //Create and save new object into the DB
   Msg.create(req.body).then(function(messages){
@@ -110,11 +134,13 @@ router.post('/ciphers/substitution', function (req, res) {
   req.checkBody('to_user', 'Recipient is required').notEmpty();
   req.checkBody('message_ciphered', 'Message is required').notEmpty();
   var errors = req.validationErrors();
+  var curr_user = req.user.username;
 
   if(errors){   //Invalid data supplied
     res.render('ciphers/substitution',{
       layout: 'dashb_layout.handlebars',
-      errors:errors
+      errors:errors,
+      from_user: curr_user
     });
   } else{   //Create and save new object into the DB
   Msg.create(req.body).then(function(messages){
@@ -140,8 +166,20 @@ router.get('/inbox',
    });
 });
 
-
-
+/*
+//Get messages from Inbox  -----> working!
+router.get('/inbox',
+  ensureAuthenticated,
+  function(req, res) {
+    var curr_user = req.user.username;
+    //console.log(req.user.username);
+    Msg.find({ to_user: curr_user }).then(function(messages){
+      res.render('inbox',{
+        messages_raw: messages
+      });
+   });
+});
+*/
 /*
 //Test get messages from inbox
 router.get('/inbox/:id', ensureAuthenticated, function (req, res) {
