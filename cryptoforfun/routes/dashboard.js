@@ -36,7 +36,9 @@ router.get('/ciphers/substitution', ensureAuthenticated, function(req, res) {
   res.render('ciphers/substitution', {layout: 'dashb_layout.handlebars'});
 });
 
-
+router.get('/mailer', ensureAuthenticated, function(req, res) {
+  res.render('mailer', {layout: 'dashb_layout.handlebars'});
+});
 
 //POST ciphers routes
 
@@ -125,30 +127,30 @@ router.post('/ciphers/substitution', function (req, res) {
 
 
 
-
-//Update user data
-router.put('/dashboard/:id', ensureAuthenticated, function (req, res) {
-  Msg.findByIdAndUpdate({_id: req.params.id}, req.body).then(function(messages){
-    req.flash('success_msg', 'Your data has been updated. Please, relogin.');
-    res.redirect('/login');
-  });
+//Get messages from Inbox
+router.get('/inbox',
+  ensureAuthenticated,
+  function(req, res) {
+    var curr_user = req.user.username;
+    //console.log(req.user.username);
+    Msg.find({ to_user: curr_user }).then(function(messages){
+      res.render('inbox',{
+        messages_raw: messages
+      });
+   });
 });
 
-//Get messages from Inbox
+
+
+/*
+//Test get messages from inbox
 router.get('/inbox/:id', ensureAuthenticated, function (req, res) {
   Msg.findOne({_id: req.params.id}).then(function(messages){
-    res.send(messages);
+    res.send(messages_raw);
     //res.flash('message_msg', messages);   //Would this work? (must define message_msg in layout)
   });
 });
 
-//Get messages from Inbox (Retrieves all messages in DB)
-router.get('/inbox', ensureAuthenticated, function (req, res) {
-  Msg.find({}).then(function(messages){
-    res.send(messages);
-    //res.flash('message_msg', messages);   //Would this work? (must define message_msg in layout)
-  });
-});
 
 //Delete data from Inbox
 router.delete('/inbox/:id', ensureAuthenticated, function (req, res) {
@@ -158,4 +160,13 @@ router.delete('/inbox/:id', ensureAuthenticated, function (req, res) {
   });
 });
 
+
+//Update user data
+router.put('/dashboard/:id', ensureAuthenticated, function (req, res) {
+  Msg.findByIdAndUpdate({_id: req.params.id}, req.body).then(function(messages){
+    req.flash('success_msg', 'Your data has been updated. Please, relogin.');
+    res.redirect('/login');
+  });
+});
+*/
 module.exports = router;

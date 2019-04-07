@@ -43,22 +43,7 @@ router.get('/rot13', function(req, res) {
 router.get('/substitution', function(req, res) {
   res.render('substitution');
 });
-/*
-router.get('/dashboard/caesar', ensureAuthenticated, function(req, res) {
-  res.render('dashboard/caesar', {layout: 'dashb_layout.handlebars'}, { username: req.User.username });
-});
 
-router.get('/dashboard/bacon', ensureAuthenticated, function(req, res) {
-  res.render('dashboard/bacon', {layout: 'dashb_layout.handlebars'});
-});
 
-router.get('/dashboard/rot13', ensureAuthenticated, function(req, res) {
-  res.render('dashboard/rot13', {layout: 'dashb_layout.handlebars'});
-});
-
-router.get('/dashboard/substitution', ensureAuthenticated, function(req, res) {
-  res.render('dashboard/substitution', {layout: 'dashb_layout.handlebars'});
-});
-*/
 
 module.exports = router;

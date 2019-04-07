@@ -28,6 +28,8 @@
   <a href="/about">About us</a>
   {{#if user}}
   <a href="/dashboard">Dashboard</a>
+  <a href="/dashboard/mailer">Mailer</a>
+  <a href="/dashboard/inbox">Inbox</a>
   <a href="/users/logout">Logout</a>
   {{else}}
   <a href="/users/login">Login</a>
@@ -36,11 +38,12 @@
 </div>
 
 <div class="cos">
-<h1 id="ciphers_font">Dashboard </h1>
+<h1 id="ciphers_font">Mailer </h1>
 <div class="about">
   <p id="pic"><img src="../../images/messages.png" width="300" height="auto"></p>
   <div id="about_cipher">
-    <p>Send encrypted messages to other users!</p>
+    <p>Send encrypted messages to other users!<br>
+      Remember to encode your messages before sending them!</p>
     </div>
     <br><br>
 </div>

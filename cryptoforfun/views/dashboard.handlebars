@@ -6,21 +6,22 @@
     <div class="about">
       <p id="pic"><img src="images/messages.png" width="300" height="auto"></p>
       <div id="about_cipher">
-        <input type="button" value="Inbox" onclick="location.href = 'dashboard/inbox';">
-        <p>Send encrypted messages to other users!</p>
-        <p>Choose the encryption method from the available choices below:</p>
+        <p>Check your <input type="button" value="Inbox" onclick="location.href = 'dashboard/inbox';"> for new messages!</p><br><br>
+
         </div>
-        <br><br>
+        <br>
     </div>
 
     <div class="container">
-
+      <p id="new">New!</p>
+      <h1 id="ciphers_font">Mailer </h1><br>
+      <p>Send encrypted messages to other users!<br>
+      Choose one of the encryption methods from the available choices below:</p><br>
         <input type="button" value="Caesar" onclick="location.href = 'dashboard/ciphers/caesar';">
         <input type="button" value="ROT13" onclick="location.href = '/dashboard/ciphers/rot13';">
         <input type="button" value="Substitution" onclick="location.href = '/dashboard/ciphers/substitution';">
         <input type="button" value="Baconian" onclick="location.href = '/dashboard/ciphers/bacon';">
-
+        <br><br>
     </div>
 
-    <script type ="text/javascript" src ="scripts/rot13.js"></script>
   </body><br><br><br><br><br>

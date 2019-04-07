@@ -7,6 +7,10 @@ var MsgSchema = new Schema({
     type: String,
     required: true
   },
+  from_user: {
+    type: String,
+    required: false
+  },
   param: {
     type: String,
     required: false
