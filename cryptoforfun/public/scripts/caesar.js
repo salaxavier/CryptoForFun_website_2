@@ -25,9 +25,9 @@ function encode()
   document.getElementById("output_name").innerHTML = "Encoded message";
 }
 
-function decode()
+function decode(_id)
 {
-  var plain_text = document.getElementById("message").value;
+  var plain_text = document.getElementById("message"+_id).value;
   var cypher_text = [];
   var alphabet=['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p',
 'q','r','s','t','u','v','w','x','y','z'];
@@ -41,7 +41,7 @@ function decode()
     }
     else
     {
-      var shift = document.getElementById("shift").value;
+      var shift = document.getElementById("shift"+_id).value;
       var shift_int = parseInt(shift, 10);    //Convert from str to int
       var coded = (input-shift_int)%26;
       var letter = alphabet[coded];
@@ -54,6 +54,7 @@ function decode()
       }
     }
   }
-  document.getElementById("output").innerHTML = cypher_text.join("");
+  console.log(_id);
+  document.getElementById("output"+_id).innerHTML = cypher_text.join("");
   document.getElementById("output_name").innerHTML = "Decoded message";
 }

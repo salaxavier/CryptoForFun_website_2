@@ -4,7 +4,7 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var bodyParser = require('body-parser');
 var mongodb = require('mongodb');
-var dbConn = mongodb.MongoClient.connect('mongodb://localhost/messages')
+var dbConn = mongodb.MongoClient.connect('mongodb://localhost/messages', { useNewUrlParser: true });
 
 var Msg = require('../models/messages');
 

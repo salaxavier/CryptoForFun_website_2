@@ -13,20 +13,27 @@
     {{#each message_list}}
     <div class="container">
       <label>From:</label><br>
-      <input readonly class="form-control" name="from_user" value="{{from_user}}"></input><br><br>
+      <input readonly name="from_user" value="{{from_user}}"></input><br><br>
       <label>Cipher:</label><br>
-      <input readonly class="form-control" name="cipher" value="{{cipher}}"></input><br><br>
+      <input readonly name="cipher" value="{{cipher}}"></input><br><br>
       <label>Shift/Keyword:</label><br>
-      <input readonly class="form-control" name="param" value="{{param}}"></input><br><br>
+      <input id="shift{{_id}}" readonly name="param" value="{{param}}"></input><br><br>
       <label>Message:</label><br>
-      <textarea id="output" readonly class="form-control" name="message_ciphered">{{message_ciphered}}</textarea>
+      <textarea id="message{{_id}}" readonly name="message_ciphered">{{message_ciphered}}</textarea>
+      <input type="button" value="Decode" onclick ="decode('{{_id}}')"><br><br>
+      <!--<input type="button" value="Decode" onclick ="decode()" href="scripts/{{cipher}}.js"><br><br>-->
+      <label id="output_name">Decoded message</label><br>
+      <textarea id="output{{_id}}" readonly></textarea><br>
+      <script type ="text/javascript" src ="../scripts/{{cipher}}.js"></script>
     </div><br><br><br>
     {{/each}}
 
 
-<!--
+
 {{{messages_raw}}}
 
-<script type ="text/javascript" src ="../scripts/babel.js"></script> -->
+
+<!--
+<script type ="text/javascript" src ="/../scripts/rot13.js"></script> -->
 </div>
 <br><br><br><br>

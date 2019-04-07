@@ -24,7 +24,9 @@ router.post('/register', function(req, res){
   req.checkBody('email', 'Invalid email address').isEmail();
   req.checkBody('username', 'Username is required').notEmpty();
   req.checkBody('password', 'Password is required').notEmpty();
+  req.checkBody('password', 'Password must be at least 8 characters long').isLength({ min: 5 })
   req.checkBody('password2', 'Passwords do not match').equals(req.body.password);
+
   var errors = req.validationErrors();
 
   if(errors){   //Invalid data supplied
