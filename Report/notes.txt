@@ -14,6 +14,7 @@ Libraries (s'han de referenciar a les referencies)
 JavaScript logic inside the templates. This helps to keep templates lean and related strictly to the representation of the data 
 (no business logic). It requires full HTML code.
 Aims: templates for the html pages, Alert messages, more confortable than Pug as it requires html language
+- Mongoose, etc. (check app.js for the rest of libraries)
 
 - Passport
 - Flash: to display error messages

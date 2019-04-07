@@ -153,33 +153,22 @@ router.post('/ciphers/substitution', function (req, res) {
 
 
 
-//Get messages from Inbox
+//Get messages in Inbox
 router.get('/inbox',
   ensureAuthenticated,
   function(req, res) {
-    var curr_user = req.user.username;
-    //console.log(req.user.username);
+    var curr_user = req.user.username;    //Read only messages "to_user = current user"
     Msg.find({ to_user: curr_user }).then(function(messages){
       res.render('inbox',{
-        messages_raw: messages
+        message_list: messages
       });
    });
 });
 
-/*
-//Get messages from Inbox  -----> working!
-router.get('/inbox',
-  ensureAuthenticated,
-  function(req, res) {
-    var curr_user = req.user.username;
-    //console.log(req.user.username);
-    Msg.find({ to_user: curr_user }).then(function(messages){
-      res.render('inbox',{
-        messages_raw: messages
-      });
-   });
-});
-*/
+
+
+
+
 /*
 //Test get messages from inbox
 router.get('/inbox/:id', ensureAuthenticated, function (req, res) {

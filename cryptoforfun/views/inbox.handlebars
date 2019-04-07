@@ -5,13 +5,28 @@
   <p id="pic"><img src="../../images/messages.png" width="300" height="auto"></p>
   <div id="about_cipher">
     <p>Here you can check your messages!</p>
-    </div>
-    <br><br>
 </div>
+</div><br><br>
 <div id="messages"></div><br>
 
-{{{messages_raw}}}
-<!--
-<script type ="text/javascript" src ="../scripts/babel.js"></script> -->
 
+    {{#each message_list}}
+    <div class="container">
+      <label>From:</label><br>
+      <input readonly class="form-control" name="from_user" value="{{from_user}}"></input><br><br>
+      <label>Cipher:</label><br>
+      <input readonly class="form-control" name="cipher" value="{{cipher}}"></input><br><br>
+      <label>Shift/Keyword:</label><br>
+      <input readonly class="form-control" name="param" value="{{param}}"></input><br><br>
+      <label>Message:</label><br>
+      <textarea id="output" readonly class="form-control" name="message_ciphered">{{message_ciphered}}</textarea>
+    </div><br><br><br>
+    {{/each}}
+
+
+<!--
+{{{messages_raw}}}
+
+<script type ="text/javascript" src ="../scripts/babel.js"></script> -->
+</div>
 <br><br><br><br>
