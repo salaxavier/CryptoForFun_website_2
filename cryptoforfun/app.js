@@ -30,6 +30,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.engine('handlebars', exphbs({defaultLayout:'layout'}));
 app.set('view engine', 'handlebars');
 
+
 //BodyParser Middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -79,9 +80,13 @@ app.use(function (req, res, next) {
   next();
 });
 
+
+
+//Routers
 app.use('/', routes);
 app.use('/users', users);
 app.use('/dashboard', dashboard);
+
 
 //Set Port
 app.set('port', (process.env.PORT || 5000));

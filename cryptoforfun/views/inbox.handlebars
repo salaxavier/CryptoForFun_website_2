@@ -17,13 +17,12 @@
       <label>Cipher:</label><br>
       <input readonly name="cipher" value="{{cipher}}"></input><br><br>
       <label>Shift/Keyword:</label><br>
-      <input id="shift{{_id}}" readonly name="param" value="{{param}}"></input><br><br>
+      <input id="param{{_id}}" readonly name="param" value="{{param}}"></input><br><br>
       <label>Message:</label><br>
-      <textarea id="message{{_id}}" readonly name="message_ciphered">{{message_ciphered}}</textarea>
-      <input type="button" value="Decode" onclick ="decode('{{_id}}')"><br><br>
-      <!--<input type="button" value="Decode" onclick ="decode()" href="scripts/{{cipher}}.js"><br><br>-->
-      <label id="output_name">Decoded message</label><br>
-      <textarea id="output{{_id}}" readonly></textarea><br>
+      <textarea id="message{{_id}}" readonly rows="4" name="message_ciphered">{{message_ciphered}}</textarea>
+      <input type="button" value="Decode" onclick ="decode_mail('{{_id}}')"><br><br>
+      <label id="output_name">Decoded message:</label><br>
+      <textarea id="output{{_id}}" rows="4" readonly></textarea><br>
       <script type ="text/javascript" src ="../scripts/{{cipher}}.js"></script>
     </div><br><br><br>
     {{/each}}

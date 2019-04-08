@@ -25,7 +25,42 @@ function encode()
   document.getElementById("output_name").innerHTML = "Encoded message";
 }
 
-function decode(_id)
+
+function decode()
+{
+  var plain_text = document.getElementById("message").value;
+  var cypher_text = [];
+  var alphabet=['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p',
+'q','r','s','t','u','v','w','x','y','z'];
+
+  for (var idx=0; idx<plain_text.length; idx++)
+  {
+    input = alphabet.indexOf(plain_text[idx]);
+    if(input == -1)
+    {
+      cypher_text.push(plain_text[idx]);
+    }
+    else
+    {
+      var shift = document.getElementById("shift").value;
+      var shift_int = parseInt(shift, 10);    //Convert from str to int
+      var coded = (input-shift_int)%26;
+      var letter = alphabet[coded];
+      cypher_text.push(letter);
+      if(coded < 0)
+      {
+        var coded=(coded + 26);
+        var letter = alphabet[coded];
+        cypher_text.push(letter);
+      }
+    }
+  }
+  document.getElementById("output").innerHTML = cypher_text.join("");
+  document.getElementById("output_name").innerHTML = "Decoded message";
+}
+
+
+function decode_mail(_id)
 {
   var plain_text = document.getElementById("message"+_id).value;
   var cypher_text = [];
@@ -41,7 +76,7 @@ function decode(_id)
     }
     else
     {
-      var shift = document.getElementById("shift"+_id).value;
+      var shift = document.getElementById("param"+_id).value;
       var shift_int = parseInt(shift, 10);    //Convert from str to int
       var coded = (input-shift_int)%26;
       var letter = alphabet[coded];
@@ -54,7 +89,6 @@ function decode(_id)
       }
     }
   }
-  console.log(_id);
   document.getElementById("output"+_id).innerHTML = cypher_text.join("");
-  document.getElementById("output_name").innerHTML = "Decoded message";
+  document.getElementById("output_name").innerHTML = "Decoded message:";
 }

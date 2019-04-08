@@ -1,4 +1,4 @@
-//Code retrieved from Web Technologies lab 05 by Simon Wells
+//Code based on the Web Technologies lab 05 by Simon Wells
 
 function encode()
 {
@@ -22,4 +22,30 @@ function encode()
     }
   }
   document.getElementById("output").innerHTML = cypher_text.join("");
+}
+
+
+
+function decode_mail(_id)
+{
+  var plain_text = document.getElementById("message"+_id).value;
+  var cypher_text = [];
+  var alphabet=['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p',
+'q','r','s','t','u','v','w','x','y','z']
+
+  for (var idx=0; idx<plain_text.length; idx++)
+  {
+    input = alphabet.indexOf(plain_text[idx]);
+    if(input == -1)
+    {
+      cypher_text.push(plain_text[idx]);
+    }
+    else
+    {
+      var coded = (input+13)%26;
+      var letter = alphabet[coded];
+      cypher_text.push(letter);
+    }
+  }
+  document.getElementById("output"+_id).innerHTML = cypher_text.join("");
 }
