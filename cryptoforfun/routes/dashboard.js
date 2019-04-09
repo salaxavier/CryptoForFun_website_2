@@ -168,19 +168,10 @@ router.get('/inbox',
 
 
 
-
 /*
-//Test get messages from inbox
-router.get('/inbox/:id', ensureAuthenticated, function (req, res) {
-  Msg.findOne({_id: req.params.id}).then(function(messages){
-    res.send(messages_raw);
-    //res.flash('message_msg', messages);   //Would this work? (must define message_msg in layout)
-  });
-});
-
-
 //Delete data from Inbox
-router.delete('/inbox/:id', ensureAuthenticated, function (req, res) {
+router.delete('/inbox:id', ensureAuthenticated, function (req, res) {
+
   Msg.findByIdAndRemove({_id: req.params.id}).then(function(messages){
     req.flash('success_msg', 'Message deleted.');
     res.redirect('/inbox');
@@ -188,11 +179,17 @@ router.delete('/inbox/:id', ensureAuthenticated, function (req, res) {
 });
 
 
+
+Msg.create(req.body).then(function(messages){
+});
+req.flash('success_msg', 'Message successfully sent.');
+
+
 //Update user data
 router.put('/dashboard/:id', ensureAuthenticated, function (req, res) {
   Msg.findByIdAndUpdate({_id: req.params.id}, req.body).then(function(messages){
     req.flash('success_msg', 'Your data has been updated. Please, relogin.');
-    res.redirect('/login');
+    res.redirect('/logout');
   });
 });
 */

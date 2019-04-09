@@ -8,8 +8,8 @@
 </div>
 </div><br><br>
 <div id="messages"></div><br>
-
-
+  {{success_msg}}
+  {{#if message_list}}
     {{#each message_list}}
     <div class="container">
       <label>From:</label><br>
@@ -26,13 +26,12 @@
       <script type ="text/javascript" src ="../scripts/{{cipher}}.js"></script>
     </div><br><br><br>
     {{/each}}
+    {{else}}
+      <div class="container">
+        <p>You have no messages.</p>
+      </div><br><br><br>
+    {{/if}}
 
 
-
-{{{messages_raw}}}
-
-
-<!--
-<script type ="text/javascript" src ="/../scripts/rot13.js"></script> -->
 </div>
 <br><br><br><br>

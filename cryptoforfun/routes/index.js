@@ -12,7 +12,10 @@ router.get('/', function(req, res) {
 });
 
 router.get('/dashboard', ensureAuthenticated, function(req, res) {
-  res.render('dashboard');
+  var curr_user = req.user.name;
+  res.render('dashboard', {
+    user_name: curr_user
+  });
 });
 
 function ensureAuthenticated(req, res, next){
