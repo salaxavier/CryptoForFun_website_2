@@ -23,6 +23,11 @@
       <input type="button" value="Decode" onclick ="decode_mail('{{_id}}')"><br><br>
       <label id="output_name">Decoded message:</label><br>
       <textarea id="output{{_id}}" rows="4" readonly></textarea><br>
+      <!--<form action="/dashboard/inbox" method="post" if-match="*">
+        <input type="hidden" id="id{{_id}}" name="id" value="{{_id}}">
+        <input type="submit" value="Delete"><br><br>
+      </form> -->
+
       <script type ="text/javascript" src ="../scripts/{{cipher}}.js"></script>
     </div><br><br><br>
     {{/each}}
@@ -31,7 +36,6 @@
         <p>You have no messages.</p>
       </div><br><br><br>
     {{/if}}
-
 
 </div>
 <br><br><br><br>

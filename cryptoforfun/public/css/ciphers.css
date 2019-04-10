@@ -156,6 +156,19 @@ input[type=button] {
   cursor: pointer;
 }
 
+input[type=submit]:hover {
+  background-color: #918B76;
+}
+
+input[type=submit] {
+  background-color: #ACA885;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
 input[type=button]:hover {
   background-color: #918B76;
 }

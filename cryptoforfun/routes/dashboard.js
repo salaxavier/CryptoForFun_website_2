@@ -168,17 +168,18 @@ router.get('/inbox',
 
 
 
-/*
-//Delete data from Inbox
-router.delete('/inbox:id', ensureAuthenticated, function (req, res) {
 
-  Msg.findByIdAndRemove({_id: req.params.id}).then(function(messages){
-    req.flash('success_msg', 'Message deleted.');
-    res.redirect('/inbox');
-  });
+//Delete data from Inbox
+router.post('/inbox', ensureAuthenticated, function (req, res) {
+  var id = req.body;
+  console.log(req.body);
+  Msg.findOneAndDelete({ _id: req.body });
+  req.flash('success_msg', 'Message deleted.');
+  res.redirect('/dashboard/inbox')
 });
 
 
+/*
 
 Msg.create(req.body).then(function(messages){
 });
