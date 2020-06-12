@@ -1,6 +1,8 @@
 
 # CryptoForFun_website_2
 
+This website includes 4 different classical ciphers which may be used to encrypt/decrypt text and send encoded messages between registered users.
+
 
 URL: http://localhost:5000
 Port: 5000
